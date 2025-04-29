@@ -1,0 +1,72 @@
+-- Создание GUI
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+
+-- Кнопки
+local TradeScamButton = Instance.new("TextButton")
+local TradeFreezeButton = Instance.new("TextButton")
+local HideGemsButton = Instance.new("TextButton")
+
+-- Начальные состояния
+local tradeScamOn = false
+local tradeFreezeOn = false
+local hideGemsOn = false
+
+-- Родитель GUI
+ScreenGui.Name = "MyTradeScamScript"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Настройки фрейма
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+Frame.Position = UDim2.new(0.3, 0, 0.3, 0)
+Frame.Size = UDim2.new(0, 350, 0, 250)
+
+-- Заголовок
+Title.Parent = Frame
+Title.Text = "МОЙ СКРИПТ - TRADE SCAM"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 24
+
+-- Функция для переключения текста
+local function toggle(button, state)
+	button.Text = (state and "ON" or "OFF")
+	button.BackgroundColor3 = (state and Color3.fromRGB(0, 200, 0) or Color3.fromRGB(200, 0, 0))
+end
+
+-- Кнопка Trade Scam
+TradeScamButton.Parent = Frame
+TradeScamButton.Position = UDim2.new(0.1, 0, 0.3, 0)
+TradeScamButton.Size = UDim2.new(0.8, 0, 0, 30)
+TradeScamButton.Text = "OFF"
+toggle(TradeScamButton, tradeScamOn)
+TradeScamButton.MouseButton1Click:Connect(function()
+	tradeScamOn = not tradeScamOn
+	toggle(TradeScamButton, tradeScamOn)
+end)
+
+-- Кнопка Trade Freeze
+TradeFreezeButton.Parent = Frame
+TradeFreezeButton.Position = UDim2.new(0.1, 0, 0.5, 0)
+TradeFreezeButton.Size = UDim2.new(0.8, 0, 0, 30)
+TradeFreezeButton.Text = "OFF"
+toggle(TradeFreezeButton, tradeFreezeOn)
+TradeFreezeButton.MouseButton1Click:Connect(function()
+	tradeFreezeOn = not tradeFreezeOn
+	toggle(TradeFreezeButton, tradeFreezeOn)
+end)
+
+-- Кнопка Hide Gems
+HideGemsButton.Parent = Frame
+HideGemsButton.Position = UDim2.new(0.1, 0, 0.7, 0)
+HideGemsButton.Size = UDim2.new(0.8, 0, 0, 30)
+HideGemsButton.Text = "OFF"
+toggle(HideGemsButton, hideGemsOn)
+HideGemsButton.MouseButton1Click:Connect(function()
+	hideGemsOn = not hideGemsOn
+	toggle(HideGemsButton, hideGemsOn)
+end)
